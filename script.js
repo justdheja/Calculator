@@ -12,7 +12,7 @@ class Calculator {
     }
 
     delete() {
-
+        this.currentOperand = this.currentOperand.toString().slice(0, -1)
     }
 
     appendNumber(number){
@@ -56,9 +56,15 @@ class Calculator {
         this.previousOperand = ''
       }
 
+      getDisplayNumber(number) {
+        return number
+      }
+
     updateDisplay() {
-        this.currentOperandTextElement.innerHTML = this.currentOperand
-        this.previousOperandTextElement.innerHTML = this.previousOperand
+        this.currentOperandTextElement.innerHTML = this.getDisplayNumber(this.currentOperand)
+        if (this.operation != null){
+            this.previousOperandTextElement.innerHTML = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+        }
     }
 }
 
@@ -93,5 +99,10 @@ equalsButton.addEventListener('click', button => {
 
 allClearButton.addEventListener('click', button => {
   calculator.clear()
+  calculator.updateDisplay()
+})
+
+deleteButton.addEventListener('click', button => {
+  calculator.delete()
   calculator.updateDisplay()
 })
