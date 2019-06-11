@@ -67,6 +67,6 @@ body {
 }
 
 h1 {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Pacifico', cursive !important;
   color: white;
 }
